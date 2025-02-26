@@ -1,0 +1,96 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+/* 크기 변형 */
+.badge-x-small {
+  font-size: 0.625rem;
+  padding: 0.0625rem 0.375rem;
+  height: 1rem;
+}
+
+.badge-small {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  height: 1.25rem;
+}
+
+.badge-medium {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  height: 1.5rem;
+}
+
+.badge-large {
+  font-size: 1rem;
+  padding: 0.375rem 1rem;
+  height: 1.75rem;
+}
+
+/* 모서리 둥글기 */
+.badge-radius-none {
+  border-radius: 0;
+}
+
+.badge-radius-100 {
+  border-radius: 0.125rem;
+}
+
+.badge-radius-200 {
+  border-radius: 0.375rem;
+}
+
+.badge-radius-300 {
+  border-radius: 0.5rem;
+}
+
+.badge-radius-circle {
+  border-radius: 9999px;
+}
+
+/* 테마 */
+.badge-theme-primary {
+  background-color: #3b82f6;
+  color: white;
+  border-color: transparent;
+}
+
+.badge-theme-secondary {
+  background-color: #6b7280;
+  color: white;
+  border-color: transparent;
+}
+
+.badge-theme-success {
+  background-color: #10b981;
+  color: white;
+  border-color: transparent;
+}
+
+.badge-theme-warning {
+  background-color: #f59e0b;
+  color: white;
+  border-color: transparent;
+}
+
+.badge-theme-danger {
+  background-color: #ef4444;
+  color: white;
+  border-color: transparent;
+}
+
+.badge-theme-info {
+  background-color: #3b82f6;
+  color: white;
+  border-color: transparent;
+}
+
+/* 활성화 상태와 호버 효과 제거 */
