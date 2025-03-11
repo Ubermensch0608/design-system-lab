@@ -9,13 +9,12 @@ const meta: Meta<typeof Badge> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    radius: {
-      control: { type: "select" },
-      options: ["none", "100", "200", "300", "circle"],
-    },
     size: {
       control: { type: "select" },
       options: ["xs", "s", "m", "l"],
+    },
+    color: {
+      control: "color",
     },
     backgroundColor: {
       control: "color",
@@ -23,8 +22,12 @@ const meta: Meta<typeof Badge> = {
     borderColor: {
       control: "color",
     },
-    color: {
-      control: "color",
+    radius: {
+      control: { type: "select" },
+      options: ["none", "100", "200", "300", "circle"],
+    },
+    children: {
+      control: "text",
     },
     // as 속성은 사용하지 않는다
     as: {
