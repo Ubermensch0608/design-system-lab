@@ -1,25 +1,25 @@
 import React, { forwardRef } from "react";
 import "./Badge.css";
 
-export type BadgeTheme =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger"
-  | "info";
-export type BadgeSize = "x-small" | "small" | "medium" | "large";
+export type BadgeSize = "xs" | "s" | "m" | "l";
 export type BadgeRadius = "none" | "100" | "200" | "300" | "circle";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
-   * 뱃지의 테마
-   * @default 'primary'
+   * 뱃지의 크기
+   * @default 's'
    */
-  theme?: BadgeTheme;
+  size?: BadgeSize;
+
+  /**
+   * 뱃지의 텍스트 색상
+   * @default '--Colors-White'
+   */
+  color?: string;
 
   /**
    * 뱃지의 배경색 (theme prop보다 우선 적용)
+   * @default '--Colors-Sky-400'
    */
   backgroundColor?: string;
 
@@ -29,25 +29,8 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   borderColor?: string;
 
   /**
-   * 뱃지의 텍스트 색상
-   */
-  color?: string;
-
-  /**
-   * 뱃지의 테두리 두께
-   * @default '1px'
-   */
-  borderWidth?: string;
-
-  /**
-   * 뱃지의 크기
-   * @default 'medium'
-   */
-  size?: BadgeSize;
-
-  /**
    * 뱃지의 모서리 둥글기
-   * @default 'circle'
+   * @default 'none'
    */
   radius?: BadgeRadius;
 
@@ -55,6 +38,12 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
    * 뱃지의 내용
    */
   children: React.ReactNode;
+
+  /**
+   * 뱃지의 태그 타입
+   * @default 'span'
+   */
+  as?: React.ElementType;
 }
 
 /**
@@ -66,13 +55,12 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
   (
     {
-      theme = "primary",
-      backgroundColor,
+      as,
+      backgroundColor = "var(--Colors-Sky-400, #00ABFF)",
       borderColor,
-      color,
-      borderWidth,
-      size = "medium",
-      radius = "circle",
+      color = "var(--Colors-White, #FFFFFF)",
+      size = "s",
+      radius = "none",
       children,
       className,
       style: userStyle,
@@ -80,20 +68,19 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
     },
     ref
   ) => {
+    const Component = as || "span";
+
     // 사용자 정의 스타일 계산
     const customStyle: React.CSSProperties = {
       ...(backgroundColor && { backgroundColor }),
       ...(borderColor && { borderColor }),
       ...(color && { color }),
-      ...(borderWidth && { borderWidth }),
       ...userStyle,
     };
 
     // 클래스 이름 생성
     const badgeClassName = [
       "badge",
-      // 사용자 정의 배경색이나 텍스트 색상이 없을 때만 기본 테마 클래스 적용
-      !backgroundColor && !color ? `badge-theme-${theme}` : "",
       `badge-${size}`,
       `badge-radius-${radius}`,
       className,
@@ -102,9 +89,14 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       .join(" ");
 
     return (
-      <span ref={ref} className={badgeClassName} style={customStyle} {...props}>
+      <Component
+        ref={ref}
+        className={badgeClassName}
+        style={customStyle}
+        {...props}
+      >
         {children}
-      </span>
+      </Component>
     );
   }
 );

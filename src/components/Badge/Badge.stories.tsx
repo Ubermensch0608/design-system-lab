@@ -13,13 +13,9 @@ const meta: Meta<typeof Badge> = {
       control: { type: "select" },
       options: ["none", "100", "200", "300", "circle"],
     },
-    theme: {
-      control: { type: "select" },
-      options: ["primary", "secondary", "success", "warning", "danger", "info"],
-    },
     size: {
       control: { type: "select" },
-      options: ["x-small", "small", "medium", "large"],
+      options: ["xs", "s", "m", "l"],
     },
     backgroundColor: {
       control: "color",
@@ -30,8 +26,11 @@ const meta: Meta<typeof Badge> = {
     color: {
       control: "color",
     },
-    borderWidth: {
-      control: "text",
+    // as 속성은 사용하지 않는다
+    as: {
+      table: {
+        disable: true,
+      },
     },
   },
 };
@@ -39,12 +38,19 @@ const meta: Meta<typeof Badge> = {
 export default meta;
 type Story = StoryObj<typeof Badge>;
 
+/**
+ * BadgeProps interface 참조
+ * @see BadgeProps
+ * 경로 : src/components/Badge/index.tsx
+ */
 export const Default: Story = {
   args: {
+    size: "s",
+    color: "white",
+    backgroundColor: "var(--Colors-Sky-400, #00ABFF)",
+    borderColor: "var(--Colors-Sky-400, #00ABFF)",
+    radius: "none",
     children: "기본 뱃지",
-    theme: "primary",
-    size: "medium",
-    radius: "circle",
   },
 };
 
@@ -60,26 +66,13 @@ export const Radius: Story = {
   ),
 };
 
-export const Themes: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-      <Badge theme="primary">Primary</Badge>
-      <Badge theme="secondary">Secondary</Badge>
-      <Badge theme="success">Success</Badge>
-      <Badge theme="warning">Warning</Badge>
-      <Badge theme="danger">Danger</Badge>
-      <Badge theme="info">Info</Badge>
-    </div>
-  ),
-};
-
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-      <Badge size="x-small">X-Small</Badge>
-      <Badge size="small">Small</Badge>
-      <Badge size="medium">Medium</Badge>
-      <Badge size="large">Large</Badge>
+      <Badge size="xs">XS</Badge>
+      <Badge size="s">S</Badge>
+      <Badge size="m">M</Badge>
+      <Badge size="l">L</Badge>
     </div>
   ),
 };
@@ -101,14 +94,6 @@ export const CustomStyles: Story = {
         커스텀 조합
       </Badge>
       <Badge
-        backgroundColor="#FEF2F2"
-        color="#EF4444"
-        borderWidth="2px"
-        borderColor="#EF4444"
-      >
-        두꺼운 테두리
-      </Badge>
-      <Badge
         style={{
           background: "linear-gradient(90deg, #3B82F6 0%, #8B5CF6 100%)",
         }}
@@ -123,16 +108,16 @@ export const CustomStyles: Story = {
 export const Combinations: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-      <Badge theme="primary" size="small" radius="100">
+      <Badge size="s" radius="100">
         Small Primary Rounded
       </Badge>
-      <Badge theme="success" size="medium" radius="200">
+      <Badge size="m" radius="200">
         Medium Success Rounded
       </Badge>
-      <Badge theme="danger" size="large" radius="300">
+      <Badge size="l" radius="300">
         Large Danger Rounded
       </Badge>
-      <Badge theme="warning" size="medium" radius="circle">
+      <Badge size="m" radius="circle">
         Warning Circle
       </Badge>
     </div>

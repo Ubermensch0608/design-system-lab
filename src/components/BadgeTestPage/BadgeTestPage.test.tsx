@@ -10,7 +10,7 @@ vi.mock("../Badge", () => ({
       data-props={JSON.stringify(props)}
       className={`badge ${props.size ? `badge-${props.size}` : ""} ${
         props.radius ? `badge-radius-${props.radius}` : ""
-      } ${props.theme ? `badge-theme-${props.theme}` : ""}`}
+      }`}
     >
       {children}
     </div>
@@ -32,10 +32,8 @@ describe("BadgeTestPage 컴포넌트", () => {
     // 모든 섹션 제목 확인
     const sectionHeadings = [
       "모서리 둥글기 (Radius)",
-      "테마 (Themes)",
       "크기 (Sizes)",
       "커스텀 스타일 (Custom Styles)",
-      "조합 예시 (Combinations)",
       "커스텀 스타일 + 기본 속성 조합",
     ];
 
@@ -65,36 +63,10 @@ describe("BadgeTestPage 컴포넌트", () => {
     });
   });
 
-  it("테마 섹션에 모든 테마 옵션이 포함되어야 합니다", () => {
-    render(<BadgeTestPage />);
-
-    const themeOptions = [
-      "Primary",
-      "Secondary",
-      "Success",
-      "Warning",
-      "Danger",
-      "Info",
-    ];
-
-    themeOptions.forEach((option) => {
-      const badge = screen.getByText(option);
-      expect(badge).toBeInTheDocument();
-
-      const badgeElement = badge.closest('[data-testid="badge-component"]');
-      expect(badgeElement).toBeInTheDocument();
-
-      const props = JSON.parse(
-        badgeElement?.getAttribute("data-props") || "{}"
-      );
-      expect(props.theme).toBe(option.toLowerCase());
-    });
-  });
-
   it("크기 섹션에 모든 크기 옵션이 포함되어야 합니다", () => {
     render(<BadgeTestPage />);
 
-    const sizeOptions = ["X-Small", "Small", "Medium", "Large"];
+    const sizeOptions = ["XS", "S", "M", "L"];
 
     sizeOptions.forEach((option) => {
       const badge = screen.getByText(option);
@@ -128,25 +100,5 @@ describe("BadgeTestPage 컴포넌트", () => {
     );
     expect(customBgProps.backgroundColor).toBe("#8B5CF6");
     expect(customBgProps.color).toBe("white");
-  });
-
-  it("조합 예시 섹션에 여러 속성이 조합된 뱃지가 포함되어야 합니다", () => {
-    render(<BadgeTestPage />);
-
-    // Small Primary Rounded 뱃지 확인
-    const combinationBadge = screen.getByText("Small Primary Rounded");
-    expect(combinationBadge).toBeInTheDocument();
-
-    const combinationElement = combinationBadge.closest(
-      '[data-testid="badge-component"]'
-    );
-    expect(combinationElement).toBeInTheDocument();
-
-    const combinationProps = JSON.parse(
-      combinationElement?.getAttribute("data-props") || "{}"
-    );
-    expect(combinationProps.theme).toBe("primary");
-    expect(combinationProps.size).toBe("small");
-    expect(combinationProps.radius).toBe("100");
   });
 });

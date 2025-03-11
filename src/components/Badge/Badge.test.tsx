@@ -10,39 +10,38 @@ describe("Badge 컴포넌트", () => {
 
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveClass("badge");
-    expect(badge).toHaveClass("badge-medium");
-    expect(badge).toHaveClass("badge-radius-circle");
-    expect(badge).toHaveClass("badge-theme-primary");
+    expect(badge).toHaveClass("badge-s");
+    expect(badge).toHaveClass("badge-radius-none");
   });
 
   // 크기 테스트
   describe("크기 속성", () => {
     it("x-small 크기로 렌더링되어야 합니다", () => {
-      render(<Badge size="x-small">X-Small</Badge>);
+      render(<Badge size="xs">X-Small</Badge>);
       const badge = screen.getByText("X-Small");
 
-      expect(badge).toHaveClass("badge-x-small");
+      expect(badge).toHaveClass("badge-xs");
     });
 
     it("small 크기로 렌더링되어야 합니다", () => {
-      render(<Badge size="small">Small</Badge>);
+      render(<Badge size="s">Small</Badge>);
       const badge = screen.getByText("Small");
 
-      expect(badge).toHaveClass("badge-small");
+      expect(badge).toHaveClass("badge-s");
     });
 
     it("medium 크기로 렌더링되어야 합니다", () => {
-      render(<Badge size="medium">Medium</Badge>);
+      render(<Badge size="m">Medium</Badge>);
       const badge = screen.getByText("Medium");
 
-      expect(badge).toHaveClass("badge-medium");
+      expect(badge).toHaveClass("badge-m");
     });
 
     it("large 크기로 렌더링되어야 합니다", () => {
-      render(<Badge size="large">Large</Badge>);
+      render(<Badge size="l">Large</Badge>);
       const badge = screen.getByText("Large");
 
-      expect(badge).toHaveClass("badge-large");
+      expect(badge).toHaveClass("badge-l");
     });
   });
 
@@ -84,51 +83,6 @@ describe("Badge 컴포넌트", () => {
     });
   });
 
-  // 테마 테스트
-  describe("테마 속성", () => {
-    it("primary 테마로 렌더링되어야 합니다", () => {
-      render(<Badge theme="primary">Primary</Badge>);
-      const badge = screen.getByText("Primary");
-
-      expect(badge).toHaveClass("badge-theme-primary");
-    });
-
-    it("secondary 테마로 렌더링되어야 합니다", () => {
-      render(<Badge theme="secondary">Secondary</Badge>);
-      const badge = screen.getByText("Secondary");
-
-      expect(badge).toHaveClass("badge-theme-secondary");
-    });
-
-    it("success 테마로 렌더링되어야 합니다", () => {
-      render(<Badge theme="success">Success</Badge>);
-      const badge = screen.getByText("Success");
-
-      expect(badge).toHaveClass("badge-theme-success");
-    });
-
-    it("warning 테마로 렌더링되어야 합니다", () => {
-      render(<Badge theme="warning">Warning</Badge>);
-      const badge = screen.getByText("Warning");
-
-      expect(badge).toHaveClass("badge-theme-warning");
-    });
-
-    it("danger 테마로 렌더링되어야 합니다", () => {
-      render(<Badge theme="danger">Danger</Badge>);
-      const badge = screen.getByText("Danger");
-
-      expect(badge).toHaveClass("badge-theme-danger");
-    });
-
-    it("info 테마로 렌더링되어야 합니다", () => {
-      render(<Badge theme="info">Info</Badge>);
-      const badge = screen.getByText("Info");
-
-      expect(badge).toHaveClass("badge-theme-info");
-    });
-  });
-
   // 커스텀 스타일 테스트
   describe("커스텀 스타일", () => {
     it("커스텀 배경색이 적용되어야 합니다", () => {
@@ -151,19 +105,12 @@ describe("Badge 컴포넌트", () => {
 
       expect(badge).toHaveStyle("color: #0000FF");
     });
-
-    it("커스텀 테두리 두께가 적용되어야 합니다", () => {
-      render(<Badge borderWidth="2px">커스텀 테두리 두께</Badge>);
-      const badge = screen.getByText("커스텀 테두리 두께");
-
-      expect(badge).toHaveStyle("border-width: 2px");
-    });
   });
 
   // 조합 테스트
   it("여러 속성을 조합하여 렌더링되어야 합니다", () => {
     render(
-      <Badge theme="success" size="small" radius="100">
+      <Badge size="s" radius="100">
         조합 테스트
       </Badge>
     );
@@ -171,8 +118,7 @@ describe("Badge 컴포넌트", () => {
     const badge = screen.getByText("조합 테스트");
 
     expect(badge).toHaveClass("badge");
-    expect(badge).toHaveClass("badge-theme-success");
-    expect(badge).toHaveClass("badge-small");
+    expect(badge).toHaveClass("badge-s");
     expect(badge).toHaveClass("badge-radius-100");
   });
 });

@@ -18,24 +18,12 @@ const BadgeTestPage = () => {
       </section>
 
       <section className="test-section">
-        <h2>테마 (Themes)</h2>
-        <div className="badge-row">
-          <Badge theme="primary">Primary</Badge>
-          <Badge theme="secondary">Secondary</Badge>
-          <Badge theme="success">Success</Badge>
-          <Badge theme="warning">Warning</Badge>
-          <Badge theme="danger">Danger</Badge>
-          <Badge theme="info">Info</Badge>
-        </div>
-      </section>
-
-      <section className="test-section">
         <h2>크기 (Sizes)</h2>
         <div className="badge-row align-center">
-          <Badge size="x-small">X-Small</Badge>
-          <Badge size="small">Small</Badge>
-          <Badge size="medium">Medium</Badge>
-          <Badge size="large">Large</Badge>
+          <Badge size="xs">XS</Badge>
+          <Badge size="s">S</Badge>
+          <Badge size="m">M</Badge>
+          <Badge size="l">L</Badge>
         </div>
       </section>
 
@@ -62,7 +50,6 @@ const BadgeTestPage = () => {
           <Badge
             backgroundColor="#FEF2F2"
             color="#EF4444"
-            borderWidth="2px"
             borderColor="#EF4444"
           >
             두꺼운 테두리
@@ -79,39 +66,16 @@ const BadgeTestPage = () => {
       </section>
 
       <section className="test-section">
-        <h2>조합 예시 (Combinations)</h2>
-        <div className="badge-row">
-          <Badge theme="primary" size="small" radius="100">
-            Small Primary Rounded
-          </Badge>
-          <Badge theme="success" size="medium" radius="200">
-            Medium Success Rounded
-          </Badge>
-          <Badge theme="danger" size="large" radius="300">
-            Large Danger Rounded
-          </Badge>
-          <Badge theme="warning" size="medium" radius="circle">
-            Warning Circle
-          </Badge>
-        </div>
-      </section>
-
-      <section className="test-section">
         <h2>커스텀 스타일 + 기본 속성 조합</h2>
         <div className="badge-row">
-          <Badge
-            backgroundColor="#4338CA"
-            color="white"
-            size="small"
-            radius="100"
-          >
+          <Badge backgroundColor="#4338CA" color="white" size="s" radius="100">
             커스텀 색상 + 작은 크기
           </Badge>
           <Badge
             backgroundColor="transparent"
             borderColor="#059669"
             color="#059669"
-            size="large"
+            size="l"
           >
             커스텀 테두리 + 큰 크기
           </Badge>

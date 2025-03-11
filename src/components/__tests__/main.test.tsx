@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach, MockInstance } from "vitest";
 import { StrictMode } from "react";
-import React from "react";
 import { createRoot } from "react-dom/client";
 
 // 모듈 모킹
